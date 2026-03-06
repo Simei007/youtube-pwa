@@ -124,6 +124,10 @@ button:hover {
   color: var(--ok);
 }
 
+#install-app {
+  margin: 0.2rem 0 0.8rem;
+}
+
 .result {
   display: flex;
   align-items: center;

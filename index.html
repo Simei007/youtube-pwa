@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0ea5e9">
   <meta name="description" content="App instalavel para colar links do YouTube e extrair automaticamente o ID do video.">
   <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="icon" href="./icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="./icon.svg">
+  <link rel="icon" href="./icons/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
   <title>YT Link ID Player</title>
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -36,6 +36,7 @@
       </form>
 
       <p id="status" class="status" role="status" aria-live="polite"></p>
+      <button id="install-app" type="button" class="ghost" hidden>Instalar app neste dispositivo</button>
 
       <div id="result" class="result" hidden>
         <p><strong>ID extraido:</strong> <span id="video-id"></span></p>

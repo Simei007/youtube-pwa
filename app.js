@@ -6,7 +6,9 @@ const statusText = document.getElementById("status");
 const resultBox = document.getElementById("result");
 const idSpan = document.getElementById("video-id");
 const copyButton = document.getElementById("copy-id");
+const installButton = document.getElementById("install-app");
 const player = document.getElementById("player");
+let deferredInstallPrompt = null;
 
 function normalize(value) {
   return value.trim().replace(/[<>]/g, "");
@@ -116,3 +118,38 @@ if ("serviceWorker" in navigator) {
     });
   });
 }
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  if (installButton) {
+    installButton.hidden = false;
+  }
+});
+
+if (installButton) {
+  installButton.addEventListener("click", async () => {
+    if (!deferredInstallPrompt) {
+      setStatus("No iPhone, instale pelo Safari em Compartilhar > Adicionar a Tela de Inicio.", "error");
+      return;
+    }
+
+    deferredInstallPrompt.prompt();
+    const { outcome } = await deferredInstallPrompt.userChoice;
+    if (outcome === "accepted") {
+      setStatus("Instalacao iniciada. Verifique o app na tela inicial ou menu iniciar.", "ok");
+    } else {
+      setStatus("Instalacao cancelada.", "error");
+    }
+    deferredInstallPrompt = null;
+    installButton.hidden = true;
+  });
+}
+
+window.addEventListener("appinstalled", () => {
+  deferredInstallPrompt = null;
+  if (installButton) {
+    installButton.hidden = true;
+  }
+  setStatus("App instalado com sucesso.", "ok");
+});
