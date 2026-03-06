@@ -71,7 +71,7 @@ function setStatus(message, kind = "") {
 }
 
 function renderVideo(id) {
-  player.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
+  player.src = `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1`;
   idSpan.textContent = id;
   resultBox.hidden = false;
 }
