@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0ea5e9">
+  <meta name="description" content="App instalavel para colar links do YouTube e extrair automaticamente o ID do video.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon.svg">
+  <title>YT Link ID Player</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <p class="tag">PWA instalavel para PC e celular</p>
+      <h1>YT Link ID Player</h1>
+      <p class="subtitle">Cole qualquer link do YouTube e o app separa automaticamente apenas o ID do video.</p>
+    </header>
+
+    <section class="panel">
+      <form id="video-form" novalidate>
+        <label for="video-input">Link completo do YouTube ou ID (11 caracteres)</label>
+        <div class="input-row">
+          <input
+            id="video-input"
+            name="video-input"
+            type="text"
+            autocomplete="off"
+            placeholder="Ex.: https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+            required
+          >
+          <button type="submit">Carregar video</button>
+        </div>
+      </form>
+
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+
+      <div id="result" class="result" hidden>
+        <p><strong>ID extraido:</strong> <span id="video-id"></span></p>
+        <button id="copy-id" type="button" class="ghost">Copiar ID</button>
+      </div>
+
+      <div class="player-wrap">
+        <iframe
+          id="player"
+          title="Player do YouTube"
+          src=""
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <p class="legal-note">
+        Aviso: anuncios seguem a politica do YouTube. Para experiencia sem anuncios, use YouTube Premium.
+      </p>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
